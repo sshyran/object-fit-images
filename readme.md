@@ -13,7 +13,9 @@ This script was made with the main use-case in mind: images on IE/Edge. Main fea
 
 ## Comparison table with alternative solutions
 
-Support                           | object-fit-images _(this)_                                     | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
+### Support
+
+|                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
 Browsers                          | IE 9-11, Edge                                                  | "All browsers"                                                                              | IE 8-11, Edge
 Tags                              | `img`                                                          | `img`                                                                                       | `img`, `video`
@@ -23,7 +25,9 @@ Tags                              | `img`                                       
 `scale-down`                      | 💔                                                              | 💔                                                                                           | 💔
 `object-position`                 | 💚                                                              | 💔                                                                                           | 💔
 
-Performance                       | object-fit-images _(this)_                                     | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
+### Performance
+
+|                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
 Size                              | 1.2KB                                                          | 1.8KB                                                                                       | 1.5KB
 Update wait                       | 💚 No wait, applied before image load                           | 💚 No wait, applied before image load                                                        | 💔 Wait until full image load
@@ -31,7 +35,9 @@ Additional DOM elements necessary | 💚 No                                     
 Performance overhead              | 💰                                                              | 💰💰💰                                                                                         | 💰💰
 Technique description             | Transparent `src` image; Image in `<img>`'s `background`       | Wrapper element with style copied from `<img>`; CSS+JS positioning; Original `<img>` hidden | Wrapper element with style copied from `<img>`; JS positioning
 
-Ease of use                       | object-fit-images _(this)_                                     | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
+### Ease of use
+
+|                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
 Object-fit definition             | 💚 Automatic in CSS                                             | 💔 Via `data` attribute in HTML (`data-object-fit="cover"`)                                  | 💔 Via class in HTML (`class="cover"`)
 Updates on resize                 | 💚 Unnecessary if media queries don't change `object-fit`       | 💛 Unnecessary if media queries don't change `object-fit`, impossible otherwise.             | 💔 Yes, manually
