@@ -9,41 +9,49 @@ This script was made with the main use-case in mind: images on IE/Edge. Main fea
 - The code is light on the CPU
 - No other elements are created to make it work
 - Once set, position is taken care by the browser
-- You can normally get and set the `<img>`'s `src` attribute: `img.src = 'other-image.jpg`;
+- You can normally get and set the `<img>`'s `src` attribute: `img.src = 'other-image.jpg'`
 
 ## Comparison table with alternative solutions
 
-Feature                           | object-fit-images, this script                                                                                                                                                                                               | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)                 | [anselmh/object-fit](https://github.com/anselmh/object-fit)
----                               | ---                                                                                                                                                                                                                          | ---                                                                                         | ---                                                                           | ---
-Technique description             | Transparent `src` image; Image in `<img>`'s `background`                                                                                                                                                                     | Wrapper element with style copied from `<img>`; CSS+JS positioning; Original `<img>` hidden | Wrapper element with style copied from `<img>`; JS positioning                | Wrapper element with style copied from `<img>`; CSS+JS positioning
-Size                              | 1.2KB                                                                                                                                                                                                                        | 1.8KB                                                                                       | 1.5KB                                                                         | 14KB
-Browsers                          | IE 9-11, Edge                                                                                                                                                                                                                | "All browsers"                                                                              | IE 8-11, Edge                                                                 | "All browsers" but **no Edge**
-Supported tags                    | `img`                                                                                                                                                                                                                        | `img`                                                                                       | `img`, `video`                                                                | `img`, `video`, other replaced elements
-`cover/contain`                   | 💚                                                                                                                                                                                                                            | 💚                                                                                           | 💚                                                                             | 💚
-`fill`                            | 💚                                                                                                                                                                                                                            | 💚                                                                                           | 💚                                                                             | 💔
-`none`                            | 💚                                                                                                                                                                                                                            | 💚                                                                                           | 💔                                                                             | 💔
-`scale-down`                      | 💔                                                                                                                                                                                                                            | 💔                                                                                           | 💔                                                                             | 💔
-`object-position`                 | 💚                                                                                                                                                                                                                            | 💔                                                                                           | 💔                                                                             | 💔
-Object-fit definition             | 💚 Automatic in CSS                                                                                                                                                                                                           | 💔 Via `data` attribute in HTML (`data-object-fit="cover"`)                                  | 💔 Via class in HTML (`class="cover"`)                                         | 💔 Via JS (`{fittype: 'cover'}`)
-`<img>` `src` changes             | 💚 Automatically reflected                                                                                                                                                                                                    | 💔 Image not updated at all                                                                  | 💔 Fix not updated                                                             | 💔 Fix not updated
-Additional DOM elements necessary | 💚 No                                                                                                                                                                                                                         | 💔 Yes, a wrapping element is added                                                          | 💔 Yes, a wrapping element is added                                            | 💔 Yes, a wrapping element is added
-Updates on resize                 | 💚 Unnecessary if media queries don't change `object-fit`                                                                                                                                                                     | 💛 Unnecessary if media queries don't change `object-fit`, impossible otherwise.             | 💔 Yes, manually                                                               | 💔 Yes
-Updates on `object-fit` change    | 💚 Automatic                                                                                                                                                                                                                  | 💔 Impossible                                                                                | 💔 Impossible                                                                  | 💔 Impossible
-Fix new elements automatically    | 💚 Optional                                                                                                                                                                                                                   | 💔 Impossible                                                                                | 💛 Manually                                                                    | 💛 Manually
-Update wait                       | 💚 No wait, applied before image load                                                                                                                                                                                         | 💚 No wait, applied before image load                                                        | 💔 Wait until full image load                                                  | 💔 Wait until full image load
-Performance overhead              | 💰                                                                                                                                                                                                                            | 💰💰💰                                                                                         | 💰💰                                                                            | 💰💰💰💰
-Other limitations                 | 💔 Any `onload` events on `<img>` will fire again when it fixes                                                                                                                                                               | 💚 I didn't find any                                                                         | 💔 Some CSS declaration might be broken because partially moved to the wrapper | 💔 Additional CSS file to load.<br> 💔 Deprecated/dead
+Support                           | object-fit-images _(this)_                                     | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
+:---                              | :---                                                           | :---                                                                                        | :---
+Browsers                          | IE 9-11, Edge                                                  | "All browsers"                                                                              | IE 8-11, Edge
+Tags                              | `img`                                                          | `img`                                                                                       | `img`, `video`
+`cover/contain`                   | 💚                                                              | 💚                                                                                           | 💚
+`fill`                            | 💚                                                              | 💚                                                                                           | 💚
+`none`                            | 💚                                                              | 💚                                                                                           | 💔
+`scale-down`                      | 💔                                                              | 💔                                                                                           | 💔
+`object-position`                 | 💚                                                              | 💔                                                                                           | 💔
 
+Performance                       | object-fit-images _(this)_                                     | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
+:---                              | :---                                                           | :---                                                                                        | :---
+Size                              | 1.2KB                                                          | 1.8KB                                                                                       | 1.5KB
+Update wait                       | 💚 No wait, applied before image load                           | 💚 No wait, applied before image load                                                        | 💔 Wait until full image load
+Additional DOM elements necessary | 💚 No                                                           | 💔 Yes, a wrapping element is added                                                          | 💔 Yes, a wrapping element is added
+Performance overhead              | 💰                                                              | 💰💰💰                                                                                         | 💰💰
+Technique description             | Transparent `src` image; Image in `<img>`'s `background`       | Wrapper element with style copied from `<img>`; CSS+JS positioning; Original `<img>` hidden | Wrapper element with style copied from `<img>`; JS positioning
+
+Ease of use                       | object-fit-images _(this)_                                     | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
+:---                              | :---                                                           | :---                                                                                        | :---
+Object-fit definition             | 💚 Automatic in CSS                                             | 💔 Via `data` attribute in HTML (`data-object-fit="cover"`)                                  | 💔 Via class in HTML (`class="cover"`)
+Updates on resize                 | 💚 Unnecessary if media queries don't change `object-fit`       | 💛 Unnecessary if media queries don't change `object-fit`, impossible otherwise.             | 💔 Yes, manually
+Updates on `object-fit` change    | 💚 Automatic                                                    | 💔 Impossible                                                                                | 💔 Impossible
+Fix new elements automatically    | 💚 Optional                                                     | 💔 Impossible                                                                                | 💛 Manually
+`<img>` `src` changes             | 💚 Automatically reflected                                      | 💔 Image not updated at all                                                                  | 💔 Fix not updated
+Other limitations                 | 💔 Any `onload` events on `<img>` will fire again when it fixes | 💚 I didn't find any                                                                         | 💔 Some CSS declaration might be broken because partially moved to the wrapper
+
+
+Runner-up: [anselmh/object-fit](https://github.com/anselmh/object-fit) is deprecated, doesn't support Edge and clocks in at 14KB.
 
 ## Usage
 
-Fix all the images on the page, present and future
+Fix all the images on the page, present and future.
 
 ```js
 objectFitImages();
 ```
 
-The first parameter can be:
+Alternatively, just fix them once. The first parameter can be:
 
 ```js
 // a selector
@@ -58,17 +66,16 @@ var oneImage = document.querySelector('img.some-image');
 objectFitImages(oneImage);
 ```
 
-
-If your code DOESN'T contain something like this:
-```css
-                            img { object-fit: cover }
-@media (max-width: 500px) { img { object-fit: contain } }
-```
-
-Then you can safely disable the resize listener this way:
+You can safely disable the `resize` listener this way:
 
 ```js
 objectFitImages('img.some-image', {onresize: false});
+```
+
+... if your code DOESN'T contain something like this:
+```css
+                            img { object-fit: cover }
+@media (max-width: 500px) { img { object-fit: contain } }
 ```
 
 ## Load and enable with plain HTML
