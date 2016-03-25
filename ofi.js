@@ -17,10 +17,16 @@
 
 
 	function fixOne (el, src, fit) {
-		src = src || el.src;
 		fit = el.currentStyle['object-fit'];
+
+		// `fill` is the default behavior for <img>
+		// Absolutely no work necessary
+		if (fit === 'fill') {
+			return;
+		}
+		src = src || el.src;
 		el.style.backgroundImage = 'url('+src+')';
-		el.style.backgroundSize = fit === 'fill'?'100% 100%':fit; // fit=none is ignored by CSS and that's the correct behavior
+		el.style.backgroundSize = fit; // fit=none is ignored by CSS and that's the correct behavior
 		el.style.backgroundPosition = el.currentStyle['object-position'];
 
 		// if it hadn't been already activated
