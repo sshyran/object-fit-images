@@ -1,4 +1,4 @@
-# object-fit-images [![module size](https://badge-size.herokuapp.com/bfred-it/object-fit-images/master/ofi.min.js) ![module gzipped size](https://badge-size.herokuapp.com/bfred-it/object-fit-images/master/ofi.min.js?compression=gzip)](https://github.com/bfred-it/object-fit-images/blob/master/ofi.min.js)
+# object-fit-images [![module gzipped size](https://badge-size.herokuapp.com/bfred-it/object-fit-images/master/ofi.min.js?compression=gzip)](#readme)
 
 > Adds support to `object-fit` to images on IE9, IE10, IE11 and Edge
 
