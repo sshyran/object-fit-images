@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>object-fit-images demo</title>
+<style>
+	html, a { font-family: sans-serif; color: #333; }
+	h1 { font-weight: 300 }
+	img { height: 150px; background-color: #ddd }
+	img[class] { width: 150px }
+	div	{ float: left; margin: 10px }
+
+	.object-fit_fill {
+		object-fit: fill;
+		font-family: 'object-fit: fill';
+	}
+
+	.object-fit_contain {
+		object-fit: contain;
+		font-family: 'object-fit: contain';
+	}
+
+	.object-fit_cover {
+		object-fit: cover;
+		font-family: 'object-fit: cover';
+	}
+
+	.object-fit_none {
+		object-fit: none;
+		font-family: 'object-fit: none';
+	}
+
+	.object-fit_scale-down {
+		object-fit: scale-down;
+		font-family: 'object-fit: scale-down';
+	}
+</style>
+
+<h1><a href="https://github.com/bfred-it/object-fit-images">object-fit-images</a></h1>
+
+<div>
+	<h2>(original image)</h2>
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
+</div>
+
+<div>
+	<h2>fill</h2>
+	<img class="object-fit_fill" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
+</div>
+
+<div>
+	<h2>contain</h2>
+	<img class="object-fit_contain" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
+</div>
+
+<div>
+	<h2>cover</h2>
+	<img class="object-fit_cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
+</div>
+
+<div>
+	<h2>none</h2>
+	<img class="object-fit_none" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
+</div>
+
+<div>
+	<h2>scale-down</h2>
+	<img class="object-fit_scale-down" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
+</div>
+
+<script src="ofi.js"></script>
+<script>window.objectFitImages();</script>

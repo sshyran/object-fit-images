@@ -1,5 +1,3 @@
-100% untested at the moment. Will test soon
-
 # object-fit-images [![module size](https://badge-size.herokuapp.com/bfred-it/object-fit-images/master/ofi.min.js) ![module gzipped size](https://badge-size.herokuapp.com/bfred-it/object-fit-images/master/ofi.min.js?compression=gzip)](https://github.com/bfred-it/object-fit-images/blob/master/ofi.min.js)
 
 > Adds support to `object-fit` to images on IE9, IE10, IE11 and Edge
@@ -17,19 +15,19 @@ This script was made with the main use-case in mind: images on IE/Edge. Main fea
 
 |                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
-Browsers                          | IE 9-11, Edge                                                  | "All browsers"                                                                              | IE 8-11, Edge
+Browsers                          | "All browsers"                                                 | "All browsers"                                                                              | IE 8-11, Edge
 Tags                              | `img`                                                          | `img`                                                                                       | `img`, `video`
 `cover/contain`                   | 💚                                                              | 💚                                                                                           | 💚
 `fill`                            | 💚                                                              | 💚                                                                                           | 💚
 `none`                            | 💚                                                              | 💚                                                                                           | 💔
-`scale-down`                      | 💔                                                              | 💔                                                                                           | 💔
+`scale-down`                      | 💛 Mapped to `contain`                                          | 💔                                                                                           | 💔
 `object-position`                 | 💚                                                              | 💔                                                                                           | 💔
 
 ### Performance
 
 |                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
-Size                              | 1.2KB                                                          | 1.8KB                                                                                       | 1.5KB
+Size                              | 1.3KB                                                          | 1.8KB                                                                                       | 1.5KB
 Update wait                       | 💚 No wait, applied before image load                           | 💚 No wait, applied before image load                                                        | 💔 Wait until full image load
 Additional DOM elements necessary | 💚 No                                                           | 💔 Yes, a wrapping element is added                                                          | 💔 Yes, a wrapping element is added
 Performance overhead              | 💰                                                              | 💰💰💰                                                                                         | 💰💰
@@ -39,7 +37,7 @@ Technique description             | Transparent `src` image; Image in `<img>`'s 
 
 |                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
-Object-fit definition             | 💚 Automatic in CSS                                             | 💔 Via `data` attribute in HTML (`data-object-fit="cover"`)                                  | 💔 Via class in HTML (`class="cover"`)
+Object-fit definition             | 💛 In CSS, via fake font-family property [*](#usage)            | 💔 Via `data` attribute in HTML (`data-object-fit="cover"`)                                  | 💔 Via class in HTML (`class="cover"`)
 Updates on resize                 | 💚 Unnecessary if media queries don't change `object-fit`       | 💛 Unnecessary if media queries don't change `object-fit`, impossible otherwise.             | 💔 Yes, manually
 Updates on `object-fit` change    | 💚 Automatic                                                    | 💔 Impossible                                                                                | 💔 Impossible
 Fix new elements automatically    | 💚 Optional                                                     | 💔 Impossible                                                                                | 💛 Manually
@@ -50,6 +48,26 @@ Other limitations                 | 💔 Any `onload` events on `<img>` will fir
 Runner-up: [anselmh/object-fit](https://github.com/anselmh/object-fit) is deprecated, doesn't support Edge and clocks in at 14KB.
 
 ## Usage
+
+Because it's nearly impossible to read unsupported property, `object-fit-images` reads the value of `object-fit` and `object-position` from the `font-family` property on `img`.
+
+```css
+.your-favorite-image {
+	object-fit: contain;
+	font-family: 'object-fit: contain;'
+}
+.your-second-favorite {
+	object-fit: contain;
+	object-position: bottom;
+	font-family: 'object-fit: cover; object-position: bottom'
+}
+```
+
+This has no effect on the rendering because it's ignored by the browser.
+
+A PostCSS plugin *could* be developed to automatically add this `font-family` property.
+
+### JS
 
 Fix all the images on the page, present and future.
 

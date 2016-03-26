@@ -1,14 +1,14 @@
 {
   "name": "object-fit-images",
-  "version": "0.5.4",
-  "description": "Adds support to object-fit to images on IE9, IE10, IE11 and Edge. (untested)",
+  "version": "1.0.0",
+  "description": "Adds support to object-fit to images on IE9, IE10, IE11 and Edge.",
   "license": "MIT",
   "repository": "bfred-it/object-fit-images",
-  "author": {
-    "name": "Federico Brigante",
-    "email": "bfred-it@users.noreply.github.com",
-    "url": "twitter.com/bfred_it"
+  "author": "Federico Brigante <bfred-it@users.noreply.github.com> (twitter.com/bfred_it)",
+  "bugs": {
+    "url": "https://github.com/bfred-it/object-fit-images/issues"
   },
+  "homepage": "https://github.com/bfred-it/object-fit-images#readme",
   "keywords": [
     "object-fit",
     "covers",
@@ -31,6 +31,7 @@
   "main": "ofi.js",
   "scripts": {
     "build": "uglifyjs --mangle toplevel ofi.js > ofi.min.js",
+    "demo": "browser-sync start --server --index 'demo.html' --files '*'",
     "prepublish": "npm run build"
   },
   "devDependencies": {
