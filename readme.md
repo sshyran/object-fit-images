@@ -1,8 +1,10 @@
-# object-fit-images [![module gzipped size](https://badge-size.herokuapp.com/bfred-it/object-fit-images/master/ofi.min.js?compression=gzip)](#readme)
+# object-fit-images [![gzipped size](https://badges.herokuapp.com/size/github/bfred-it/object-fit-images/gh-pages/ofi.min.js?gzip=true&label=gzipped%20size)](#readme)
 
-> Adds support to `object-fit` to images on IE9, IE10, IE11 and Edge
+> Adds support to `object-fit` to images on IE9, IE10, IE11, Edge and other old browsers.
 
-This script was made with the main use-case in mind: images on IE/Edge. Main features:
+This script was made with the main use-case in mind: images. Take a look at the [demo.](http://bfred-it.github.io/object-fit-images/demo.html) 
+
+## Main features
 
 - The code is light on the CPU
 - No other elements are created to make it work
@@ -37,7 +39,8 @@ Technique description             | Transparent `src` image; Image in `<img>`'s 
 
 |                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
-Object-fit definition             | 💛 In CSS, via fake font-family property [*](#usage)            | 💔 Via `data` attribute in HTML (`data-object-fit="cover"`)                                  | 💔 Via class in HTML (`class="cover"`)
+Object-fit definition             | 💛 In CSS, via `font-family` property [*](#usage)               | 💔 Via `data` attribute in HTML (`data-object-fit="cover"`)                                  | 💔 Via class in HTML (`class="cover"`)
+Change change on `@media` query   | 💚 Yes                                                          | 💔 No                                                                                        | 💔 No
 Updates on resize                 | 💚 Unnecessary if media queries don't change `object-fit`       | 💛 Unnecessary if media queries don't change `object-fit`, impossible otherwise.             | 💔 Yes, manually
 Updates on `object-fit` change    | 💚 Automatic                                                    | 💔 Impossible                                                                                | 💔 Impossible
 Fix new elements automatically    | 💚 Optional                                                     | 💔 Impossible                                                                                | 💛 Manually
@@ -45,7 +48,9 @@ Fix new elements automatically    | 💚 Optional                               
 Other limitations                 | 💔 Any `onload` events on `<img>` will fire again when it fixes | 💚 I didn't find any                                                                         | 💔 Some CSS declaration might be broken because partially moved to the wrapper
 
 
-Runner-up: [anselmh/object-fit](https://github.com/anselmh/object-fit) is deprecated, doesn't support Edge and clocks in at 14KB.
+Runner-ups:
+- [anselmh/object-fit](https://github.com/anselmh/object-fit) is deprecated, doesn't support Edge and clocks in at 14KB.
+- [@primozcigler/neat-trick](https://medium.com/@primozcigler/neat-trick-for-css-object-fit-fallback-on-edge-and-other-browsers-afbc53bbb2c3) requires jQuery and Modernizr, + more cons similar to the other two.
 
 ## Usage
 
