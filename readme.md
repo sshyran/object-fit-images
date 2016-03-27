@@ -71,13 +71,15 @@ Because it's nearly impossible to read unsupported property, `object-fit-images`
 
 This has no effect on the rendering because it's ignored by the browser.
 
-Alternatively, if you are using a Sass or Less, you can include one of the mixins in the `preprocessor/` directory to keep your code DRY and easy to use. For example:
+A PostCSS plugin *could* also be developed to automatically add this `font-family` property.
 
-```css
-img { @include object-fit(cover, center); }
+There are already SCSS/SASS/Less mixins in the [`preprocessor`](/preprocessors) to create that `font-family` automatically, like this:
+
+```scss
+@import "object-fit-images/preprocessors/mixin.scss";
+img { @include object-fit(cover, top); }
 ```
 
-A PostCSS plugin *could* also be developed to automatically add this `font-family` property.
 
 ### JS
 
