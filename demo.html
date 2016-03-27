@@ -50,12 +50,23 @@
 			btn.innerHTML = 'Fix not necessary';
 		}
 	}
+	function addImage () {
+		var div = document.createElement('div');
+		div.innerHTML = '<h2>(new image)</h2><img class="object-fit_'+ ['contain',
+'cover',
+'none',
+'scale-down'][Math.random()*4|0] +'" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">';
+		document.querySelector('.main-images').appendChild(div);
+	}
 </script>
 
-<h1><a href="https://github.com/bfred-it/object-fit-images">object-fit-images</a></h1>
-<div>
+<h1>
+	<a href="https://github.com/bfred-it/object-fit-images">object-fit-images</a>
 	<button type="button" onclick="applyOFI()">Apply fix</button>
-</div>
+	<button type="button" onclick="addImage()">Add image</button>
+</h1>
+
+<div class="main-images">
 
 <div>
 	<h2>(original image)</h2>
@@ -85,6 +96,8 @@
 <div>
 	<h2>scale-down</h2>
 	<img class="object-fit_scale-down" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
+</div>
+
 </div>
 
 <hr>

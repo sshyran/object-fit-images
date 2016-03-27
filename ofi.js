@@ -69,7 +69,7 @@
 		window.addEventListener('resize', fix.bind(null, imgs));
 	}
 	function onInsert (e) {
-		if ( e.target.tagName === 'img' ) {
+		if ( e.target.tagName === 'IMG' ) {
 			fix( e.target );
 		}
 	}
@@ -82,7 +82,7 @@
 		opts = opts || {};
 
 		if (!autoModeEnabled && !imgs) {
-			window.addEventListener('DOMNodeInserted', onInsert, false);
+			document.body.addEventListener('load', onInsert, true);
 			autoModeEnabled = true;
 			fixOnResize('img');
 		}
