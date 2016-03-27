@@ -42,7 +42,9 @@
 		}
 
 		// remove srcset if present because it overrides src
-		el.srcset = '';
+		if (el.srcset) {
+			el.srcset = '';
+		}
 
 		// if it hadn't been already activated
 		if (!el[privateAccessor]) {
