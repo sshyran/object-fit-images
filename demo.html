@@ -35,7 +35,20 @@
 	}
 </style>
 
+<script src="ofi.js"></script>
+<script>
+	function applyOFI () {
+		window.objectFitImages('img', {onresize: false});
+		var btn = document.querySelector('button');
+		btn.disabled = true;
+		btn.innerHTML = 'Fix applied';
+	}
+</script>
+
 <h1><a href="https://github.com/bfred-it/object-fit-images">object-fit-images</a></h1>
+<div>
+	<button type="button" onclick="applyOFI()">Apply fix</button>
+</div>
 
 <div>
 	<h2>(original image)</h2>
@@ -67,5 +80,9 @@
 	<img class="object-fit_scale-down" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
 </div>
 
-<script src="ofi.js"></script>
-<script>window.objectFitImages();</script>
+<script>
+	// apply automatically if requested non-interactively
+	if (location.search === '?interactive=false') {
+		applyOFI();
+	}
+</script>
