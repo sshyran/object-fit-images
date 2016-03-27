@@ -65,7 +65,7 @@
 		Object.defineProperty(el, 'currentSrc', {get: definitions.get}); // it should be read-only
 	}
 
-	function fixOnResize (imgs) {
+	function watchMQ (imgs) {
 		window.addEventListener('resize', fix.bind(null, imgs));
 	}
 	function onInsert (e) {
@@ -84,11 +84,13 @@
 		if (!autoModeEnabled && !imgs) {
 			document.body.addEventListener('load', onInsert, true);
 			autoModeEnabled = true;
-			fixOnResize('img');
+			if (opts.watchMQ) {
+				watchMQ('img');
+			}
 		}
 
 		// use imgs as a selector or just select all images
-		if (imgs === fix.undef || typeof imgs === 'string') {
+		if (!imgs || typeof imgs === 'string') {
 			imgs = document.querySelectorAll( imgs || 'img' );
 		} else if (!imgs.length) {
 			imgs = [imgs];
@@ -104,8 +106,8 @@
 		}
 
 		// make sure that the value of object-fit doesn't change on different media queries
-		if (!autoModeEnabled && opts.onresize === fix.undef || opts.onresize) {
-			fixOnResize(imgs);
+		if (!autoModeEnabled && opts.watchMQ) {
+			watchMQ(imgs);
 		}
 	}
 	return fix;

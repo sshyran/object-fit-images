@@ -41,10 +41,9 @@ Technique description             | Transparent `src` image; Image in `<img>`'s 
 |                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
 Object-fit definition             | 💛 In CSS, via `font-family` property [*](#usage)               | 💔 Via `data` attribute in HTML (`data-object-fit="cover"`)                                  | 💔 Via class in HTML (`class="cover"`)
-Support changes on `@media` query | 💚 Yes                                                          | 💔 No                                                                                        | 💔 No
-Updates on resize                 | 💚 Unnecessary if media queries don't change `object-fit`       | 💛 Unnecessary if media queries don't change `object-fit`, impossible otherwise.             | 💔 Yes, manually
-Updates on `object-fit` change    | 💚 Automatic                                                    | 💔 Impossible                                                                                | 💔 Impossible
-Fix new elements automatically    | 💚 Optional                                                     | 💔 Impossible                                                                                | 💛 Manually
+Support changes in `@media` query | 💚 Optional, with `{watchMQ:true}`                              | 💔 No                                                                                        | 💔 No
+Updates on resize                 | 💚 Unnecessary                                                  | 💚 Unnecessary                                                                               | 💔 Yes, manually
+Fix new elements automatically    | 💚 Optional, with  `objectFitImages()` or `objectFitImages(false)`  | 💔 Impossible                                                                                | 💛 Manually
 `<img>` `src` changes             | 💚 Automatically reflected                                      | 💔 Image not updated at all                                                                  | 💔 Fix not updated
 Other limitations                 | 💔 Any `onload` events on `<img>` will fire again when it fixes | 💚 I didn't find any                                                                         | 💔 Some CSS declaration might be broken because partially moved to the wrapper
 
@@ -83,10 +82,11 @@ img { @include object-fit(cover, top); }
 
 ### JS
 
-Fix all the images on the page, present and future.
+Fix all the images on the page, present and future (auto mode)
 
 ```js
 objectFitImages();
+// or objectFitImages(false)
 ```
 
 Alternatively, just fix them once. The first parameter can be:
@@ -104,16 +104,20 @@ var oneImage = document.querySelector('img.some-image');
 objectFitImages(oneImage);
 ```
 
-You can safely disable the `resize` listener this way:
+#### Media query affects object-fit value
 
-```js
-objectFitImages('img.some-image', {onresize: false});
-```
+If your media queries change the value of `object-fit`, like this:
 
-... if your code DOESN'T contain something like this:
 ```css
                             img { object-fit: cover }
 @media (max-width: 500px) { img { object-fit: contain } }
+```
+
+... then you need to enable the media queries support like this:
+
+```js
+objectFitImages('img.some-image', {watchMQ: true});
+// or objectFitImages(false, {watchMQ: true}); // for the auto mode
 ```
 
 ## Load and enable with plain HTML
@@ -139,9 +143,11 @@ objectFitImages();
 ### `objectFitImages([images, [opts]])`
 
 parameter                         | description
----                               | ---
-**`images`**                      | Type: `string` (as a selector) or `array`-like *optional* <br> The images to apply the fix on. If it's not supplied, OFI will enter the automatic mode (which means that new images in the DOM will automatically be fixed).
-**`opts`**                        | Type: `object` *optional* <br> Set to `{onresize: false}` if you don't expect `object-fit` to vary in a media query.
+:---                              | :---
+**`images`**                      | Type: `string` (as a selector) or `array`-like *optional* <br> The images to apply the fix on. If it's not supplied (or `false`), OFI will enter the automatic mode (which means that new images in the DOM will automatically be fixed).
+**`opts`**                        | Type: `object` *optional* <br> Set to `{watchMQ: true}` if you expect `object-fit` to vary in a media query.
+
+
 
 
 ## License

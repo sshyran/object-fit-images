@@ -34,6 +34,15 @@
 		object-fit: scale-down;
 		font-family: 'object-fit: scale-down';
 	}
+	@media (max-width: 700px) {
+		html {
+			background: #eee;
+		}
+		.xs--object-fit_cover {
+			object-fit: cover;
+			font-family: 'object-fit: cover';
+		}
+	}
 	hr {
 		clear: both;
 	}
@@ -44,7 +53,7 @@
 	function applyOFI () {
 		var btn = document.querySelector('button');
 		btn.disabled = true;
-		if (false !== window.objectFitImages('img', {onresize: false})) {
+		if (false !== window.objectFitImages(false, {watchMQ:true})) {
 			btn.innerHTML = 'Fix applied';
 		} else {
 			btn.innerHTML = 'Fix not necessary';
@@ -96,6 +105,11 @@
 <div>
 	<h2>scale-down</h2>
 	<img class="object-fit_scale-down" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
+</div>
+
+<div>
+	<h2>contain <br> cover @ &lt;700px</h2>
+	<img class="object-fit_contain xs--object-fit_cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
 </div>
 
 </div>
