@@ -72,7 +72,7 @@ This has no effect on the rendering because it's ignored by the browser.
 
 A PostCSS plugin *could* also be developed to automatically add this `font-family` property.
 
-There are already SCSS/SASS/Less mixins in the [`preprocessor`](/preprocessors) to create that `font-family` automatically, like this:
+There are already SCSS/SASS/Less mixins in the [`preprocessor`](/preprocessors) folder to create that `font-family` automatically, like this:
 
 ```scss
 @import "object-fit-images/preprocessors/mixin.scss";
@@ -148,7 +148,11 @@ parameter                         | description
 **`opts`**                        | Type: `object` *optional* <br> Set to `{watchMQ: true}` if you expect `object-fit` to vary in a media query.
 
 
+## Changelog
 
+* 2.0.0 Flipped `onresize` default: the values rarely change with media queries, so only enable them when needed with `{watchMQ:true}`
+* 1.1.0 Added `srcset` support
+* 1.0.0 First public release
 
 ## License
 
