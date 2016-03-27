@@ -24,6 +24,7 @@ Tags                              | `img`                                       
 `none`                            | 💚                                                              | 💚                                                                                           | 💔
 `scale-down`                      | 💛 Mapped to `contain`                                          | 💔                                                                                           | 💔
 `object-position`                 | 💚                                                              | 💔                                                                                           | 💔
+`srcset` support                  | 💚 Native or [picturefill](https://github.com/scottjehl/picturefill), but [no Edge 12](detailed-support-tables.md#responsive-images-support)                                                              | 💔                                                                                           | 💔
 
 ### Performance
 

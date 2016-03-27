@@ -7,6 +7,7 @@
 	h1 { font-weight: 300 }
 	img { height: 150px; background-color: #ddd !important }
 	img[class] { width: 150px }
+	img.responsiveimg { width: 300px }
 	div	{ float: left; margin: 10px }
 
 	.object-fit_fill {
@@ -33,15 +34,21 @@
 		object-fit: scale-down;
 		font-family: 'object-fit: scale-down';
 	}
+	hr {
+		clear: both;
+	}
 </style>
 
 <script src="ofi.js"></script>
 <script>
 	function applyOFI () {
-		window.objectFitImages('img', {onresize: false});
 		var btn = document.querySelector('button');
 		btn.disabled = true;
-		btn.innerHTML = 'Fix applied';
+		if (false !== window.objectFitImages('img', {onresize: false})) {
+			btn.innerHTML = 'Fix applied';
+		} else {
+			btn.innerHTML = 'Fix not necessary';
+		}
 	}
 </script>
 
@@ -78,6 +85,13 @@
 <div>
 	<h2>scale-down</h2>
 	<img class="object-fit_scale-down" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg" alt="Pier">
+</div>
+
+<hr>
+
+<div>
+	<h2>srcset + contain (@1x, @2x, @3x)</h2>
+	<img class="object-fit_contain responsiveimg" src="https://webkit.org/demos/srcset/image-src.png" srcset="https://webkit.org/demos/srcset/image-1x.png 1x, https://webkit.org/demos/srcset/image-2x.png 2x, https://webkit.org/demos/srcset/image-3x.png 3x">
 </div>
 
 <script>

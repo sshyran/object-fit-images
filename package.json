@@ -1,6 +1,6 @@
 {
   "name": "object-fit-images",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Adds support to object-fit to images on IE9, IE10, IE11, Edge and other old browsers.",
   "license": "MIT",
   "repository": "bfred-it/object-fit-images",
@@ -23,6 +23,7 @@
     "shiv",
     "fills",
     "images",
+    "srcset",
     "backgrounds"
   ],
   "files": [
