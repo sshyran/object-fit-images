@@ -6,10 +6,11 @@ This script was made with the main use-case in mind: images. Take a look at the 
 
 ## Main features
 
-- The code is light on the CPU
-- No other elements are created to make it work
+- CPU-light code
+- No additional elements are created or necessary
 - Once set, position is taken care by the browser
 - You can normally get and set the `<img>`'s `src` attribute: `img.src = 'other-image.jpg'`
+- `srcset` support
 
 ## Comparison table with alternative solutions
 
@@ -17,7 +18,7 @@ This script was made with the main use-case in mind: images. Take a look at the 
 
 |                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
-Browsers                          | "All browsers"                                                 | "All browsers"                                                                              | IE 8-11, Edge
+Browsers                          | IEdge 9-14, Android 4.4.4-, possibly others                    | "All browsers"                                                                              | IE 8-11, Edge
 Tags                              | `img`                                                          | `img`                                                                                       | `img`, `video`
 `cover/contain`                   | 💚                                                              | 💚                                                                                           | 💚
 `fill`                            | 💚                                                              | 💚                                                                                           | 💚
@@ -26,31 +27,7 @@ Tags                              | `img`                                       
 `object-position`                 | 💚                                                              | 💔                                                                                           | 💔
 `srcset` support                  | 💚 Native or [picturefill](https://github.com/scottjehl/picturefill), but [no Edge 12](detailed-support-tables.md#responsive-images-support)                                                              | 💔                                                                                           | 💔
 
-### Performance
-
-|                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
-:---                              | :---                                                           | :---                                                                                        | :---
-Size                              | 1.3KB                                                          | 1.8KB                                                                                       | 1.5KB
-Update wait                       | 💚 No wait, applied before image load                           | 💚 No wait, applied before image load                                                        | 💔 Wait until full image load
-Additional DOM elements necessary | 💚 No                                                           | 💔 Yes, a wrapping element is added                                                          | 💔 Yes, a wrapping element is added
-Performance overhead              | 💰                                                              | 💰💰💰                                                                                         | 💰💰
-Technique description             | Transparent `src` image; Image in `<img>`'s `background`       | Wrapper element with style copied from `<img>`; CSS+JS positioning; Original `<img>` hidden | Wrapper element with style copied from `<img>`; JS positioning
-
-### Ease of use
-
-|                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
-:---                              | :---                                                           | :---                                                                                        | :---
-Object-fit definition             | 💛 In CSS, via `font-family` property [*](#usage)               | 💔 Via `data` attribute in HTML (`data-object-fit="cover"`)                                  | 💔 Via class in HTML (`class="cover"`)
-Support changes in `@media` query | 💚 Optional, with `{watchMQ:true}`                              | 💔 No                                                                                        | 💔 No
-Updates on resize                 | 💚 Unnecessary                                                  | 💚 Unnecessary                                                                               | 💔 Yes, manually
-Fix new elements automatically    | 💚 Optional, with  `objectFitImages()` or `objectFitImages(false)`  | 💔 Impossible                                                                                | 💛 Manually
-`<img>` `src` changes             | 💚 Automatically reflected                                      | 💔 Image not updated at all                                                                  | 💔 Fix not updated
-Other limitations                 | 💔 Any `onload` events on `<img>` will fire again when it fixes | 💚 I didn't find any                                                                         | 💔 Some CSS declaration might be broken because partially moved to the wrapper
-
-
-Runner-ups:
-- [anselmh/object-fit](https://github.com/anselmh/object-fit) is deprecated, doesn't support Edge and clocks in at 14KB.
-- [@primozcigler/neat-trick](https://medium.com/@primozcigler/neat-trick-for-css-object-fit-fallback-on-edge-and-other-browsers-afbc53bbb2c3) requires jQuery and Modernizr, + more cons similar to the other two.
+Performance and ease of use considerations in [detailed-support-tables.md](detailed-support-tables.md#additional-comparisons-with-alternatives)
 
 ## Usage
 
@@ -70,15 +47,14 @@ Because it's nearly impossible to read unsupported property, `object-fit-images`
 
 This has no effect on the rendering because it's ignored by the browser.
 
-A PostCSS plugin *could* also be developed to automatically add this `font-family` property.
+A PostCSS plugin [*could* also be developed](https://github.com/bfred-it/object-fit-images/issues/1) to automatically add this `font-family` property.
 
-There are already SCSS/SASS/Less mixins in the [`preprocessor`](/preprocessors) folder to create that `font-family` automatically, like this:
+There are some SCSS/SASS/Less mixins in the [`preprocessor`](/preprocessors) folder to create that `font-family` automatically, like this:
 
 ```scss
 @import "object-fit-images/preprocessors/mixin.scss";
 img { @include object-fit(cover, top); }
 ```
-
 
 ### JS
 
@@ -86,7 +62,6 @@ Fix all the images on the page, present and future (auto mode)
 
 ```js
 objectFitImages();
-// or objectFitImages(false)
 ```
 
 Alternatively, just fix them once. The first parameter can be:
