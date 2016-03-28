@@ -81,6 +81,8 @@ var oneImage = document.querySelector('img.some-image');
 objectFitImages(oneImage);
 ```
 
+You can run `objectFitImages()` on the same elements more than once without issues (for example if you decide to change anything on resize)
+
 #### Media query affects object-fit value
 
 If your media queries change the value of `object-fit`, like this:
