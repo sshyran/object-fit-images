@@ -1,6 +1,8 @@
-# object-fit-images [![gzipped size](https://badges.herokuapp.com/size/github/bfred-it/object-fit-images/gh-pages/dist/ofi.browser.js?gzip=true&label=gzipped%20size)](#readme)
+# object-fit-images
 
 > Adds support to `object-fit` to images on IE9, IE10, IE11, Edge and other old browsers.
+
+[![gzipped size](https://badges.herokuapp.com/size/github/bfred-it/object-fit-images/gh-pages/dist/ofi.browser.js?gzip=true&label=gzipped%20size)](#readme) [![Travis build status](https://api.travis-ci.org/bfred-it/object-fit-images.svg?branch=gh-pages)](https://travis-ci.org/bfred-it/object-fit-images) 
 
 This script was made with the main use-case in mind: images. Take a look at the [demo.](http://bfred-it.github.io/object-fit-images/demo.html) 
 
