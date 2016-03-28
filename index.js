@@ -25,12 +25,10 @@ function fixOne(el, src, style) {
 
 	// Edge 12 doesn't support currentSrc https://blogs.windows.com/msedgedev/2015/10/07/using-extended-srcset-and-the-picture-element-to-tailor-your-image-to-every-device-and-layout/
 	src = src || el.currentSrc || el.src;
-	el.style.background = 'url(' + src + ') ' + (style['object-position'] || 'center') + '/' + style['object-fit'].replace('none', 'auto').replace('scale-down', 'contain') + ' no-repeat';
-
-	if (!el.style.background) {
-		// el.style.background is invalid, don't replace the <img>
-		return;
-	}
+	el.style.backgroundImage = 'url(' + src + ')';
+	el.style.backgroundPosition = style['object-position'] || 'center';
+	el.style.backgroundSize = style['object-fit'].replace('scale-down', 'contain'); // "object-fit: none" automatically maps to "background-size:auto"
+	el.style.backgroundRepeat = 'no-repeat';
 
 	// remove srcset because it overrides src
 	if (el.srcset) {
