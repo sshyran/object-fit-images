@@ -11,17 +11,17 @@
 	var isSupported = 'object-fit' in document.createElement('i').style;
 	var autoModeEnabled = false;
 
-	function getStyle (el) {
+	function getStyle(el) {
 		var style = getComputedStyle(el).fontFamily;
 		var parsed;
 		var props = {};
 		while ((parsed = propRegex.exec(style)) !== null) {
-		  props[parsed[1]] = parsed[2];
+			props[parsed[1]] = parsed[2];
 		}
 		return props;
 	}
 
-	function fixOne (el, src, style) {
+	function fixOne(el, src, style) {
 		style = style || getStyle(el);
 
 		// `fill` is the default behavior for <img>
@@ -32,7 +32,7 @@
 
 		// Edge 12 doesn't support currentSrc https://blogs.windows.com/msedgedev/2015/10/07/using-extended-srcset-and-the-picture-element-to-tailor-your-image-to-every-device-and-layout/
 		src = src || el.currentSrc || el.src;
-		el.style.background = 'url('+src+') ' + (style['object-position'] || 'center') + '/' + style['object-fit'].replace('none', 'auto').replace('scale-down', 'contain') + ' no-repeat';
+		el.style.background = 'url(' + src + ') ' + (style['object-position'] || 'center') + '/' + style['object-fit'].replace('none', 'auto').replace('scale-down', 'contain') + ' no-repeat';
 
 		if (!el.style.background) {
 			// el.style.background is invalid, don't replace the <img>
@@ -54,25 +54,29 @@
 		el[privateAccessor] = src;
 	}
 
-	function keepSrcUsable (el) {
+	function keepSrcUsable(el) {
 		var definitions = {
-			get: function ()  { return el[privateAccessor]; },
-			set: function (v) { return fixOne(el, v); }
+			get: function () {
+				return el[privateAccessor];
+			},
+			set: function (v) {
+				return fixOne(el, v);
+			}
 		};
 		Object.defineProperty(el, 'src', definitions);
 		Object.defineProperty(el, 'currentSrc', {get: definitions.get}); // it should be read-only
 	}
 
-	function watchMQ (imgs) {
+	function watchMQ(imgs) {
 		window.addEventListener('resize', fix.bind(null, imgs));
 	}
-	function onInsert (e) {
-		if ( e.target.tagName === 'IMG' ) {
-			fix( e.target );
+	function onInsert(e) {
+		if (e.target.tagName === 'IMG') {
+			fix(e.target);
 		}
 	}
 
-	function fix (imgs, opts) {
+	function fix(imgs, opts) {
 		opts = opts || {};
 
 		if (!autoModeEnabled && !imgs) {
@@ -106,5 +110,7 @@
 			watchMQ(imgs);
 		}
 	}
-	return isSupported?function() {return false;}:fix;
+	return isSupported ? function () {
+		return false;
+	} : fix;
 }));
