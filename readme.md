@@ -124,15 +124,6 @@ parameter                         | description
 **`images`**                      | Type: `string` (as a selector) or `array`-like *optional* <br> The images to apply the fix on. If it's not supplied (or `false`), OFI will enter the automatic mode (which means that new images in the DOM will automatically be fixed).
 **`opts`**                        | Type: `object` *optional* <br> Set to `{watchMQ: true}` if you expect `object-fit` to vary in a media query.
 
-
-## Changelog
-
-* 2.2.0 Don't override the `<img>`'s `background-color`
-* 2.1.0 Further byte savings
-* 2.0.0 Flipped `onresize` default: the values rarely change with media queries, so only enable them when needed with `{watchMQ:true}`
-* 1.1.0 Added `srcset` support
-* 1.0.0 First public release
-
 ## License
 
 MIT © [Federico Brigante](http://twitter.com/bfred_it)

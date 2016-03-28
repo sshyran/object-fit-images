@@ -24,7 +24,8 @@ function fixOne(el, src, style) {
 		return;
 	}
 
-	// Edge 12 doesn't support currentSrc https://blogs.windows.com/msedgedev/2015/10/07/using-extended-srcset-and-the-picture-element-to-tailor-your-image-to-every-device-and-layout/
+	// Edge 12 doesn't support currentSrc
+	// https://github.com/bfred-it/object-fit-images/blob/gh-pages/detailed-support-tables.md#object-fit-images--srcset
 	src = src || el.currentSrc || el.src;
 	el.style.backgroundImage = 'url(' + src + ')';
 	el.style.backgroundPosition = style['object-position'] || 'center';

@@ -10,14 +10,14 @@ OFI is meant to add support of `object-fit` and `object-position` to **IEdge 9-1
 
 💚 Supported in the browsers above, with [`picturefill`](https://github.com/scottjehl/picturefill) where necessary, but:
 
-* 💔 In Edge 12, OFI picks the `src` attribute instead of what's in `srcset` because `currentSrc`. I need to look into forcing `picturefill` to override the native `srcset` support
+* 💔 In Edge 12, OFI picks the `src` attribute instead of what's in `srcset` because [`currentSrc` is not supported](https://blogs.windows.com/msedgedev/2015/06/08/introducing-srcset-responsive-images-in-microsoft-edge/)
 * 💛 If I add Safari support for `object-position` to OFI, Safari might suffer of the above issue
 
 ### `object-fit-images` + `picture`
 
 💚 Supported in the browsers above, with [`picturefill`](https://github.com/scottjehl/picturefill) where necessary, but:
 
-* 💔 Edge 13+ overrides OFI's fix with what's in `<source>` (maybe I can fix it by removing `<source>` tags but then it'd lose responsiveness). I need to look into forcing `picturefill` to override the native `picture` support
+* 💔 Edge 13+ overrides OFI's fix with what's in `<source>` (maybe I can fix it by removing `<source>` tags but then it'd lose responsiveness)
 * 💛 If I add Safari support for `object-position` to OFI, Safari might suffer of the above issue
 
 ## Can I Use
