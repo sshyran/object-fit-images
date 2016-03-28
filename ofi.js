@@ -8,13 +8,11 @@
 	'use strict';
 	var privateAccessor = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='; // transparent image, might as well reuse it
 	var propRegex = /(object-fit|object-position)\s*:\s*([^;$"'\s]+)/g;
-
-	// only IE is supported via .runtimeStyle
 	var isSupported = 'object-fit' in document.createElement('i').style;
+	var autoModeEnabled = false;
 
 	function getStyle (el) {
-		var style = window.getComputedStyle(el).fontFamily;
-		propRegex.lastIndex = 0; // reset regex
+		var style = getComputedStyle(el).fontFamily;
 		var parsed;
 		var props = {};
 		while ((parsed = propRegex.exec(style)) !== null) {
@@ -41,7 +39,7 @@
 			return;
 		}
 
-		// remove srcset if present because it overrides src
+		// remove srcset because it overrides src
 		if (el.srcset) {
 			el.srcset = '';
 		}
@@ -74,11 +72,7 @@
 		}
 	}
 
-	var autoModeEnabled = false;
 	function fix (imgs, opts) {
-		if (isSupported) {
-			return false;
-		}
 		opts = opts || {};
 
 		if (!autoModeEnabled && !imgs) {
@@ -89,9 +83,11 @@
 			}
 		}
 
+		imgs = imgs || 'img';
+
 		// use imgs as a selector or just select all images
-		if (!imgs || typeof imgs === 'string') {
-			imgs = document.querySelectorAll( imgs || 'img' );
+		if (typeof imgs === 'string') {
+			imgs = document.querySelectorAll('img');
 		} else if (!imgs.length) {
 			imgs = [imgs];
 		}
@@ -105,10 +101,10 @@
 			}
 		}
 
-		// make sure that the value of object-fit doesn't change on different media queries
+		// if requested, watch media queries for object-fit change
 		if (!autoModeEnabled && opts.watchMQ) {
 			watchMQ(imgs);
 		}
 	}
-	return fix;
+	return isSupported?function() {return false;}:fix;
 }));

@@ -32,6 +32,7 @@
   "main": "ofi.js",
   "scripts": {
     "build": "uglifyjs --mangle toplevel ofi.js > ofi.min.js",
+    "count-bytes": "uglifyjs --mangle bottomlevel ofi.js | gzip-size",
     "demo": "browser-sync start --server --index 'demo.html' --files '*'",
     "prepublish": "npm run build"
   },
