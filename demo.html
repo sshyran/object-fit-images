@@ -2,6 +2,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>object-fit-images demo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.2/picturefill.min.js"></script>
+<script src="dist/ofi.browser.js"></script>
+<script>
+function applyOFI() {
+    var btn = document.querySelector('button');
+    btn.disabled = true;
+    if (false !== window.objectFitImages(false, {
+            watchMQ: true
+        })) {
+        btn.innerHTML = 'Fix applied';
+    } else {
+        btn.innerHTML = 'Fix not necessary';
+    }
+}
+
+function addImage() {
+    var div = document.createElement('div');
+    div.innerHTML = '<h2>(new image)</h2><img class="OF-' + ['contain', 'cover', 'none', 'scale-down'][Math.random() * 4 | 0] + '" src="https://goo.gl/IyVB38">';
+    document.querySelector('.main-images').appendChild(div);
+}
+</script>
 <style>
 html,
 a {
@@ -70,27 +91,6 @@ hr {
     clear: both;
 }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.2/picturefill.min.js"></script>
-<script src="ofi.js"></script>
-<script>
-function applyOFI() {
-    var btn = document.querySelector('button');
-    btn.disabled = true;
-    if (false !== window.objectFitImages(false, {
-            watchMQ: true
-        })) {
-        btn.innerHTML = 'Fix applied';
-    } else {
-        btn.innerHTML = 'Fix not necessary';
-    }
-}
-
-function addImage() {
-    var div = document.createElement('div');
-    div.innerHTML = '<h2>(new image)</h2><img class="OF-' + ['contain', 'cover', 'none', 'scale-down'][Math.random() * 4 | 0] + '" src="https://goo.gl/IyVB38">';
-    document.querySelector('.main-images').appendChild(div);
-}
-</script>
 <h1>
 	<a href="https://github.com/bfred-it/object-fit-images">object-fit-images</a>
 	<button type="button" onclick="applyOFI()">Apply fix</button>
