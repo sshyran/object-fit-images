@@ -1,4 +1,4 @@
-# object-fit-images [![gzipped size](https://badges.herokuapp.com/size/github/bfred-it/object-fit-images/gh-pages/ofi.min.js?gzip=true&label=gzipped%20size)](#readme)
+# object-fit-images [![gzipped size](https://badges.herokuapp.com/size/github/bfred-it/object-fit-images/gh-pages/dist/ofi.browser.js?gzip=true&label=gzipped%20size)](#readme)
 
 > Adds support to `object-fit` to images on IE9, IE10, IE11, Edge and other old browsers.
 
@@ -98,7 +98,7 @@ objectFitImages('img.some-image', {watchMQ: true});
 ## Load and enable with plain HTML
 
 ```html
-<script src="ofi.min.js"></script>
+<script src="dist/ofi.browser.js"></script>
 <script>objectFitImages();</script>
 ```
 
