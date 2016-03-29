@@ -2,7 +2,7 @@
 
 > OFI in short
 
-OFI is meant to add support of `object-fit` and `object-position` to **IEdge 9-13, Android 4.4-**, but I might edit it to add `object-position` support to **Safari OSX/iOS**
+OFI is meant to add support of `object-fit` and `object-position` to **IEdge 9-13, Android 4.4-**, but I might edit it to [add `object-position` support to **Safari OSX/iOS**](https://github.com/bfred-it/object-fit-images/issues/4)
 
 ## Responsive images support
 
@@ -15,9 +15,9 @@ OFI is meant to add support of `object-fit` and `object-position` to **IEdge 9-1
 
 ### `object-fit-images` + `picture`
 
-💚 Supported in the browsers above, with [`picturefill`](https://github.com/scottjehl/picturefill) where necessary, but:
+💛 Supported only in IEdge 9-12 and Android 4.4.4 with [`picturefill`](https://github.com/scottjehl/picturefill), because browsers that support `<picture>` natively override OFI's fix with what's in `<source>`.
 
-* 💔 Edge 13+ overrides OFI's fix with what's in `<source>` (maybe I can fix it by removing `<source>` tags but then it'd lose responsiveness)
+* 💔 maybe I can fix it by removing `<source>` tags but then it'd lose responsiveness.
 * 💛 If I add Safari support for `object-position` to OFI, Safari might suffer of the above issue
 
 ## Can I Use
