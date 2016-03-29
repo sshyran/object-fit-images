@@ -20,7 +20,7 @@ This script was made with the most common use-case in mind: images. Take a look 
 
 |                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
-Browsers                          | IEdge 9-14, Android 4.4.4-, possibly others                    | "All browsers"                                                                              | IE 8-11, Edge
+Browsers                          | IEdge 9-14, Android 4.4.4-, ...                    | "All browsers"                                                                              | IE 8-11, Edge
 Tags                              | `img`                                                          | `img`                                                                                       | `img`, `video`
 `cover/contain`                   | 💚                                                              | 💚                                                                                           | 💚
 `fill`                            | 💚                                                              | 💚                                                                                           | 💚
