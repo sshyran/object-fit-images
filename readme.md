@@ -25,9 +25,10 @@ Tags                              | `img`                                       
 `cover/contain`                   | 💚                                                              | 💚                                                                                           | 💚
 `fill`                            | 💚                                                              | 💚                                                                                           | 💚
 `none`                            | 💚                                                              | 💚                                                                                           | 💔
-`scale-down`                      | 💛 Mapped to `contain`                                          | 💔                                                                                           | 💔
+`scale-down`                      | 💚 Full support [added](https://github.com/bfred-it/object-fit-images/commit/6170255cc6ebcaebf560e695fc63354ca150f315) | 💔                                                                                           | 💔
 `object-position`                 | 💚                                                              | 💔                                                                                           | 💔
-`srcset` support                  | 💚 Native or [picturefill](https://github.com/scottjehl/picturefill), but [no Edge 12](detailed-support-tables.md#responsive-images-support)                                                              | 💔                                                                                           | 💔
+`srcset` support                  | 💚 Native or [picturefill](https://github.com/scottjehl/picturefill), but [no Edge 12](detailed-support-tables.md#object-fit-images--srcset)                                                              | 💔                                                                                           | 💔
+`picture` support                 | 💛 Exclusively where [picturefill](https://github.com/scottjehl/picturefill) [acts*](detailed-support-tables.md#object-fit-images--picture) | 💔                                                                                           | 💔
 
 Performance and ease of use considerations in [detailed-support-tables.md](detailed-support-tables.md#additional-comparisons-with-alternatives)
 
