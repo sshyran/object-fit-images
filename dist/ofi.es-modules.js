@@ -71,7 +71,7 @@ function fix(imgs, opts) {
 	if (isSupported) {
 		return false;
 	}
-	const startAutoMode = !autoModeEnabled && !imgs;
+	var startAutoMode = !autoModeEnabled && !imgs;
 	opts = opts || {};
 	imgs = imgs || 'img';
 
