@@ -14,12 +14,13 @@ function getStyle(el) {
 	return props;
 }
 
-function fixOne(el, src, style) {
-	style = style || getStyle(el);
+function fixOne(el, src) {
+	var style = getStyle(el);
 
+	// exit if not set
 	// `fill` is the default behavior for <img>
 	// Absolutely no work necessary
-	if (style['object-fit'] === 'fill') {
+	if (!style['object-fit'] || style['object-fit'] === 'fill') {
 		return;
 	}
 
@@ -92,7 +93,7 @@ function watchMQ(imgs) {
 }
 function onInsert(e) {
 	if (e.target.tagName === 'IMG') {
-		fix(e.target);
+		fixOne(e.target);
 	}
 }
 
@@ -112,12 +113,8 @@ export default function fix(imgs, opts) {
 	}
 
 	// apply fix to all
-	var style;
 	for (var i = 0; i < imgs.length; i++) {
-		style = getStyle(imgs[i]);
-		if (style['object-fit']) {
-			fixOne(imgs[i], null, style);
-		}
+		fixOne(imgs[i]);
 	}
 
 	if (startAutoMode) {
