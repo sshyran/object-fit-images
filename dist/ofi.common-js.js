@@ -73,16 +73,8 @@ function fix(imgs, opts) {
 	if (isSupported) {
 		return false;
 	}
+	const startAutoMode = !autoModeEnabled && !imgs;
 	opts = opts || {};
-
-	if (!autoModeEnabled && !imgs) {
-		document.body.addEventListener('load', onInsert, true);
-		autoModeEnabled = true;
-		if (opts.watchMQ) {
-			watchMQ('img');
-		}
-	}
-
 	imgs = imgs || 'img';
 
 	// use imgs as a selector or just select all images
@@ -101,8 +93,14 @@ function fix(imgs, opts) {
 		}
 	}
 
+	if (startAutoMode) {
+		document.body.addEventListener('load', onInsert, true);
+		autoModeEnabled = true;
+		imgs = 'img'; // reset to a generic selector for watchMQ
+	}
+
 	// if requested, watch media queries for object-fit change
-	if (!autoModeEnabled && opts.watchMQ) {
+	if (opts.watchMQ) {
 		watchMQ(imgs);
 	}
 }
