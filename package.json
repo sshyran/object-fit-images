@@ -1,6 +1,6 @@
 {
   "name": "object-fit-images",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Adds support to object-fit to images on IE9, IE10, IE11, Edge and other old browsers.",
   "license": "MIT",
   "repository": "bfred-it/object-fit-images",
