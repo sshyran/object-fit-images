@@ -50,14 +50,7 @@ Because it's nearly impossible to read unsupported property, `object-fit-images`
 
 This has no effect on the rendering because it's ignored by the browser.
 
-A PostCSS plugin [*could* also be developed](https://github.com/bfred-it/object-fit-images/issues/1) to automatically add this `font-family` property.
-
-There are some SCSS/SASS/Less mixins in the [`preprocessor`](/preprocessors) folder to create that `font-family` automatically, like this:
-
-```scss
-@import "object-fit-images/preprocessors/mixin.scss";
-img { @include object-fit(cover, top); }
-```
+The `font-family` property could be generated automatically with the [**PostCSS plugin**](https://github.com/ronik-design/postcss-object-fit-images) or with the **SCSS/SASS/Less** mixins in the [`preprocessor`](/preprocessors) folder.
 
 ### JS
 
