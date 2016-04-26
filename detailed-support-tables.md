@@ -32,7 +32,7 @@ OFI is meant to add support of `object-fit` and `object-position` to **IEdge 9-1
 
 |                                 | object-fit-images                                              | [tonipinel/object-fit-polyfill](https://github.com/tonipinel/object-fit-polyfill)           | [jonathantneal/fitie](https://github.com/jonathantneal/fitie)
 :---                              | :---                                                           | :---                                                                                        | :---
-Size                              | 1.3KB                                                          | 1.8KB                                                                                       | 1.5KB
+Size                              | 1.6KB                                                          | 1.9KB                                                                                       | 1.5KB
 Update wait                       | 💚 No wait, applied before image load                           | 💚 No wait, applied before image load                                                        | 💔 Wait until full image load
 Additional DOM elements necessary | 💚 No                                                           | 💔 Yes, a wrapping element is added                                                          | 💔 Yes, a wrapping element is added
 Performance overhead              | 💰                                                              | 💰💰💰                                                                                         | 💰💰
