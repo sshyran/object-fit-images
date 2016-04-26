@@ -26,10 +26,12 @@
     "srcset",
     "backgrounds"
   ],
-  "main": "dist/ofi.common-js.js",
   "files": [
-    "dist/ofi.common-js.js"
+    "dist/ofi.common-js.js",
+    "dist/ofi.es-modules.js"
   ],
+  "main": "dist/ofi.common-js.js",
+  "jsnext:main": "dist/ofi.es-modules.js",
   "scripts": {
     "build": "bfred-npm-bundler ofi objectFitImages",
     "count-bytes": "npm run build; gzip-size dist/ofi.browser.js",
