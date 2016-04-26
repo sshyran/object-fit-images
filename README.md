@@ -34,7 +34,7 @@ Performance and ease of use considerations in [detailed-support-tables.md](detai
 
 ## Usage
 
-Because it's nearly impossible to read unsupported property, `object-fit-images` reads the value of `object-fit` and `object-position` from the `font-family` property on `img`.
+Because it's nearly impossible to read unsupported properties, `object-fit-images` reads the value of `object-fit` and `object-position` from the `font-family` property on `img`.
 
 ```css
 .your-favorite-image {
@@ -58,6 +58,8 @@ Fix all the images on the page, present and future (auto mode)
 
 ```js
 objectFitImages();
+// but you should still run it on DOM ready or at the bottom of the page
+// if you use jQuery, the code is: $(objectFitImages);
 ```
 
 Alternatively, just fix them once. The first parameter can be:
