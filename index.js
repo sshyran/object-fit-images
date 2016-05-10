@@ -42,7 +42,7 @@ function fixOne(el, src) {
 	// store info on object for later use
 	el[ಠ] = el[ಠ] || {s: src};
 
-	el.style.backgroundImage = 'url(' + src + ')';
+	el.style.backgroundImage = 'url("' + src + '")';
 	el.style.backgroundPosition = style['object-position'] || 'center';
 	el.style.backgroundRepeat = 'no-repeat';
 
