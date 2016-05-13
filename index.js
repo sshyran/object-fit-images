@@ -1,6 +1,6 @@
 'use strict';
 var ಠ = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='; // transparent image, used as accessor and replacing image
-var propRegex = /(object-fit|object-position)\s*:\s*([^;$"'\s]+)/g;
+var propRegex = /(object-fit|object-position)\s*:\s*([\w\s%]+)/g;
 var isSupported = 'object-fit' in document.createElement('i').style;
 var autoModeEnabled = false;
 
