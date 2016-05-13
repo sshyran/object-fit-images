@@ -46,9 +46,7 @@ function fixOne(el, src) {
 	el.style.backgroundPosition = style['object-position'] || 'center';
 	el.style.backgroundRepeat = 'no-repeat';
 
-	if (style['object-fit'].indexOf('scale-down') < 0) {
-		el.style.backgroundSize = style['object-fit'].replace('none', 'auto');
-	} else {
+	if (/scale-down/.test(style['object-fit'])) {
 		// `object-fit: scale-down` is either `contain` or `auto`
 		if (!el[ಠ].i) {
 			el[ಠ].i = new Image();
@@ -71,6 +69,8 @@ function fixOne(el, src) {
 			}
 			setTimeout(loop, 100);
 		})();
+	} else {
+		el.style.backgroundSize = style['object-fit'].replace('none', 'auto');
 	}
 }
 
