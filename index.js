@@ -2,6 +2,8 @@
 var ಠ = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='; // transparent image, used as accessor and replacing image
 var propRegex = /(object-fit|object-position)\s*:\s*([\w\s%]+)/g;
 var isSupported = 'object-fit' in document.documentElement.style;
+var nativeGetAttribute = document.documentElement.getAttribute;
+var nativeSetAttribute = document.documentElement.setAttribute;
 var autoModeEnabled = false;
 
 function getStyle(el) {
@@ -14,7 +16,7 @@ function getStyle(el) {
 	return props;
 }
 
-function fixOne(el, src) {
+function fixOne(el, requestedSrc) {
 	var style = getStyle(el);
 
 	// exit if not set
@@ -24,23 +26,31 @@ function fixOne(el, src) {
 		return;
 	}
 
-	// Edge 12 doesn't support currentSrc
+	// Edge 12 supports srcset but not currentSrc
 	// https://github.com/bfred-it/object-fit-images/blob/gh-pages/detailed-support-tables.md#object-fit-images--srcset
-	src = src || el.currentSrc || el.src;
+	var src = requestedSrc || el.currentSrc || el.src;
 
 	// remove srcset because it overrides src
 	if (el.srcset) {
 		el.srcset = '';
 	}
 
-	// if it hadn't been already activated
-	if (!el[ಠ]) {
+	// store info on object for later use
+	if (el[ಠ]) {
+		el[ಠ].s = src;
+		if (requestedSrc) {
+			// the attribute reflects the user input
+			// the property is the resolved URL
+			el[ಠ].a = requestedSrc;
+		}
+	} else {
+		el[ಠ] = {
+			s: src,
+			a: requestedSrc || nativeGetAttribute.call(el, 'src')
+		};
 		el.src = ಠ;
 		keepSrcUsable(el);
 	}
-
-	// store info on object for later use
-	el[ಠ] = el[ಠ] || {s: src};
 
 	el.style.backgroundImage = 'url("' + src + '")';
 	el.style.backgroundPosition = style['object-position'] || 'center';
@@ -98,6 +108,25 @@ function onInsert(e) {
 	}
 }
 
+function hijackAttributes() {
+	if (!isSupported) {
+		HTMLImageElement.prototype.getAttribute = function (name) {
+			if (this[ಠ] && name === 'src') {
+				return this[ಠ].a;
+			}
+			return nativeGetAttribute.call(this, name);
+		};
+
+		HTMLImageElement.prototype.setAttribute = function (name, value) {
+			if (this[ಠ] && name === 'src') {
+				this.src = String(value);
+			} else {
+				nativeSetAttribute.call(this, name, value);
+			}
+		};
+	}
+}
+
 export default function fix(imgs, opts) {
 	if (isSupported) {
 		return false;
@@ -129,3 +158,5 @@ export default function fix(imgs, opts) {
 		watchMQ(imgs);
 	}
 }
+
+hijackAttributes();
