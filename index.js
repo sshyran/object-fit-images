@@ -81,7 +81,8 @@ function keepSrcUsable(el) {
 		},
 		set: function (v) {
 			delete el[ಠ].i; // scale-down's img sizes need to be updated too
-			return fixOne(el, v);
+			fixOne(el, v);
+			return v;
 		}
 	};
 	Object.defineProperty(el, 'src', definitions);
