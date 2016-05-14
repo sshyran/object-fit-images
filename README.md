@@ -75,6 +75,9 @@ objectFitImages(someImages);
 // a single element
 var oneImage = document.querySelector('img.some-image');
 objectFitImages(oneImage);
+
+// or with jQuery
+$('img.some-image').get().forEach(objectFitImages);
 ```
 
 You can run `objectFitImages()` on the same elements more than once without issues (for example if you decide to change anything on resize)
