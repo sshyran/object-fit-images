@@ -1,7 +1,7 @@
 'use strict';
 var ಠ = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='; // transparent image, used as accessor and replacing image
 var propRegex = /(object-fit|object-position)\s*:\s*([\w\s%]+)/g;
-var isSupported = 'object-fit' in document.documentElement.style;
+var supportsObjectFit = 'object-fit' in document.documentElement.style;
 var nativeGetAttribute = document.documentElement.getAttribute;
 var nativeSetAttribute = document.documentElement.setAttribute;
 var autoModeEnabled = false;
@@ -69,6 +69,7 @@ function fixOne(el, requestedSrc) {
 		// as a consequence of calling ofi() twice on the same image, but it's light
 		// and causes no issues, so it's not worth ensuring that it doesn't.
 		(function loop() {
+			// https://bugs.chromium.org/p/chromium/issues/detail?id=495908
 			if (el[ಠ].i.naturalWidth) {
 				if (el[ಠ].i.naturalWidth > el.width || el[ಠ].i.naturalHeight > el.height) {
 					el.style.backgroundSize = 'contain';
@@ -99,8 +100,8 @@ function keepSrcUsable(el) {
 	Object.defineProperty(el, 'currentSrc', {get: definitions.get}); // it should be read-only
 }
 
-function watchMQ(imgs) {
-	window.addEventListener('resize', fix.bind(null, imgs));
+function watchMQ(imgs, opts) {
+	window.addEventListener('resize', fix.bind(null, imgs, opts));
 }
 function onInsert(e) {
 	if (e.target.tagName === 'IMG') {
@@ -109,7 +110,7 @@ function onInsert(e) {
 }
 
 function hijackAttributes() {
-	if (!isSupported) {
+	if (!supportsObjectFit) {
 		HTMLImageElement.prototype.getAttribute = function (name) {
 			if (this[ಠ] && name === 'src') {
 				return this[ಠ].a;
@@ -128,12 +129,12 @@ function hijackAttributes() {
 }
 
 export default function fix(imgs, opts) {
-	if (isSupported) {
-		return false;
-	}
 	var startAutoMode = !autoModeEnabled && !imgs;
 	opts = opts || {};
 	imgs = imgs || 'img';
+	if (supportsObjectFit && !opts.skipTest) {
+		return false;
+	}
 
 	// use imgs as a selector or just select all images
 	if (typeof imgs === 'string') {
@@ -155,8 +156,11 @@ export default function fix(imgs, opts) {
 
 	// if requested, watch media queries for object-fit change
 	if (opts.watchMQ) {
-		watchMQ(imgs);
+		delete opts.watchMQ;
+		watchMQ(imgs, opts);
 	}
 }
+
+fix.supportsObjectFit = supportsObjectFit;
 
 hijackAttributes();
