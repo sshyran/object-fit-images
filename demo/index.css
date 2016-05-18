@@ -31,16 +31,16 @@ img {
 }
 
 img[class] {
-	height: 130px;
-	width: 150px
+	height: calc(50px + 10vw);
+	width: 17vw;
 }
 
 img.responsiveimg {
-	width: 300px
+	width: 30vw
 }
 
 img.object-position {
-	height: 100px;
+	height: 10vw;
 }
 .of-supported,
 .of-not-supported {
@@ -55,7 +55,7 @@ section {
 	margin-top: 1em;
 }
 section figure {
-	flex-basis: 250px;
+	flex-basis: 10em;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
@@ -93,12 +93,10 @@ section figure {
 }
 
 @media (max-width: 700px) {
-	html {
-		background: #eee;
-	}
 	.xs--OF-cover {
 		object-fit: cover;
 		font-family: 'object-fit: cover';
+		border-color: maroon;
 	}
 }
 
