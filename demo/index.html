@@ -6,32 +6,17 @@
 	<script src="../dist/ofi.browser.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.2/picturefill.min.js"></script>
 	<link rel="stylesheet" href="index.css">
-	<script>
-		function applyOFI() {
-			var btn = document.querySelector('button');
-			btn.disabled = true;
-			if (false !== window.objectFitImages(false, {
-					watchMQ: true
-				})) {
-				btn.innerHTML = 'Fix applied';
-			} else {
-				btn.innerHTML = 'Fix not necessary';
-			}
-		}
-
-		function addImage(btn) {
-			var div = document.createElement('figure');
-			var ofit = ['contain', 'cover', 'none', 'scale-down'][Math.random() * 4 | 0];
-			div.innerHTML = '<img class="OF-' + ofit + '" src="https://goo.gl/DvBM70"><figcaption>new image with <code>' + ofit + '</code></figcaption>';
-			btn.parentNode.parentNode.appendChild(div);
-		}
-	</script>
 </head>
 <body>
 	<h1>
 	Demo page for <a href="https://github.com/bfred-it/object-fit-images">object-fit-images</a>
-		<button type="button" onclick="applyOFI()">Apply fix</button>
 	</h1>
+	<p class="of-supported">
+		<code>object-fit</code> is natively supported in this browser, fix skipped. <button type="button" onclick="applyOFI()">Apply fix anyway</button>
+	</p>
+	<p class="of-not-supported">
+		<code>object-fit</code> is not natively supported in this browser. <button type="button" onclick="applyOFI()">Apply fix</button>
+	</p>
 	<figure>
 		<img src="https://goo.gl/DvBM70">
 		<figcaption>unmodified <code>&lt;img&gt;</code></figcaption>
@@ -93,9 +78,33 @@
 		</h1>
 	</section>
 	<script>
+
+	function applyOFI(viaUrl) {
+		var btn = document.querySelector('button');
+		btn.disabled = true;
+		objectFitImages(false, {
+			watchMQ: true,
+			skipTest: true
+		});
+		if (objectFitImages.supportsObjectFit) {
+			btn.innerHTML = 'Fix applied anyway' + (viaUrl ? ' via URL' : '');
+		} else {
+			btn.innerHTML = 'Fix applied';
+		}
+	}
+
+	function addImage(btn) {
+		var div = document.createElement('figure');
+		var ofit = ['contain', 'cover', 'none', 'scale-down'][Math.random() * 4 | 0];
+		div.innerHTML = '<img class="OF-' + ofit + '" src="https://goo.gl/DvBM70"><figcaption>new image with <code>' + ofit + '</code></figcaption>';
+		btn.parentNode.parentNode.appendChild(div);
+	}
+
+	document.querySelector(objectFitImages.supportsObjectFit ? '.of-supported' : '.of-not-supported').style.display = 'block';
+
 	// apply automatically if requested non-interactively
 	if (location.search === '?interactive=false') {
-		applyOFI();
+		applyOFI(true);
 	}
 	</script>
 </body>

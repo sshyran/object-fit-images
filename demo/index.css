@@ -42,6 +42,10 @@ img.responsiveimg {
 img.object-position {
 	height: 100px;
 }
+.of-supported,
+.of-not-supported {
+	display: none;
+}
 
 section {
 	display: flex;
@@ -97,3 +101,4 @@ section figure {
 		font-family: 'object-fit: cover';
 	}
 }
+
